@@ -1,10 +1,9 @@
 import  OpenAI  from 'openai'
 import config from 'config'
 import fs from 'fs'
-import 'dotenv/config'
 
 const openai0 = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY // defaults to process.env["OPENAI_API_KEY"]
+  apiKey: config.get('OPENAI_API_KEY'), // defaults to process.env["OPENAI_API_KEY"]
 });
 
 class OpenAIApi {
@@ -38,4 +37,4 @@ class OpenAIApi {
 		}
 	}
 }
-export const openai = new OpenAIApi(process.env.OPENAI_API_KEY)
+export const openai = new OpenAIApi(config.get('OPENAI_API_KEY'))

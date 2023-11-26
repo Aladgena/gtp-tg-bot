@@ -4,13 +4,12 @@ import { code } from 'telegraf/format'
 import config from 'config'
 import { ogg } from './ogg.js'
 import { openai } from './openai.js'
-import 'dotenv/config'
 
 const INITIAL_SESSION = {
 	messages: [],
 }
 
-const bot = new Telegraf(process.env.TELEGRAM_TOKEN)
+const bot = new Telegraf(config.get('TELEGRAM_TOKEN'))
 
 bot.use(session())
 
@@ -69,6 +68,7 @@ bot.on(message('text'), async (ctx) => {
 	} catch (e) {
 		console.log(`Error while voice message`, e.message)
 	}
+	
 })
 
 bot.launch()
