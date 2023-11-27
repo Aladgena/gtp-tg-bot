@@ -4,6 +4,7 @@ import { code } from 'telegraf/format'
 import config from 'config'
 import { ogg } from './ogg.js'
 import { openai } from './openai.js'
+import { keepAlive } from './server.js'
 import 'dotenv/config'
 
 const INITIAL_SESSION = {
@@ -72,6 +73,7 @@ bot.on(message('text'), async (ctx) => {
 	
 })
 
+keepAlive();
 bot.launch()
 
 process.once('SIGINT', () => bot.stop('SIGINT'))
